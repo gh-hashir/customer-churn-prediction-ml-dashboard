@@ -1,99 +1,240 @@
 # ChurnIQ — Customer Churn Prediction ML Analytics Dashboard
 ### *Made with ❤️ by Hashir Khan*
 
-**ChurnIQ** is a production-grade, highly interactive Machine Learning dashboard built with **Streamlit** and **Plotly** to explore, train, evaluate, and deploy predictive models using the **IBM Telco Customer Churn** dataset.
-
-The system features custom **glassmorphic card styling**, dynamic HSL color mappings, smooth hover animations, and rigorous ML pipelines constructed to strictly prevent data leakage.
+<p align="center">
+  <img src="https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white"/>
+  <img src="https://img.shields.io/badge/scikit--learn-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white"/>
+  <img src="https://img.shields.io/badge/XGBoost-189fdd?style=for-the-badge&logo=xgboost&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Plotly-3F4F75?style=for-the-badge&logo=plotly&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white"/>
+</p>
 
 ---
 
-## 🚀 Live Server Deployment
-The dashboard is currently running live on your system:
-* **Local URL:** [http://localhost:8501](http://localhost:8501)
-* **Network URL:** [http://192.168.1.18:8501](http://192.168.1.18:8501)
+## 🌐 Live Demo
+
+> **🚀 [https://customer-churn-prediction-ml-dashboard-1.streamlit.app](https://customer-churn-prediction-ml-dashboard-1.streamlit.app)**
+
+---
+
+## 📖 Overview
+
+**ChurnIQ** is a production-grade, highly interactive Machine Learning dashboard built with **Streamlit** and **Plotly** to explore, train, evaluate, and deploy predictive models on the **IBM Telco Customer Churn** dataset.
+
+Customer **churn** — when a subscriber cancels or stops using a service — is one of the most costly challenges in the telecommunications industry. Acquiring a new customer costs **5–25×** more than retaining an existing one. This dashboard provides an **end-to-end ML pipeline** to identify at-risk customers before they leave.
+
+The system features:
+- Custom **glassmorphic card styling** with a premium dark mode UI
+- **Dynamic HSL color mappings** and smooth hover micro-animations
+- **Rigorous ML pipelines** that strictly prevent data leakage
+- **Real-time churn inference** for individual customer profiles
 
 ---
 
 ## 🎨 Professional UI & Aesthetics
-The visual identity of **ChurnIQ** is optimized for executive-level presentation:
-* **Premium Dark Mode:** Employs slate, indigo, and violet accents paired with custom typography (Inter font family).
-* **Micro-Animations:** Subtle CSS hover translations and glow effects on cards and metric highlights.
-* **Streamlined Sidebar:** Compact navigation panel with descriptive icons for seamless transition across 6 distinct pages.
+
+- **Premium Dark Mode** — Slate, indigo, and violet accent palette with custom Inter typography
+- **Micro-Animations** — Subtle CSS hover translations and glow effects on KPI cards
+- **Streamlined Sidebar** — Compact navigation with descriptive icons across 6 distinct pages
+- **Responsive Layouts** — Adaptive column grids for charts, tables, and controls
 
 ---
 
-## 🕹️ System Architecture & 6 Sections
+## 🕹️ System Architecture — 6 Dashboard Sections
 
 ### 🏠 1. Home
-* **KPI Showcase:** Dynamic metric cards reflecting **Total Customers (7,043)**, **Churn Rate (26.5%)**, **Avg Monthly Charges ($64.76)**, and **Avg Tenure (32.4 months)**.
-* **High-Impact Visuals:** Donut chart showcasing customer distribution alongside stacked bar charts reflecting churn rates per contract length.
-* **Core Business Case:** Highlighting why retaining existing subscribers is **5-25×** cheaper than acquiring new ones.
+- **KPI Showcase** — Dynamic cards: Total Customers (7,043), Churn Rate (26.5%), Avg Monthly Charges ($64.76), Avg Tenure (32.4 mo)
+- **Donut Chart** — Customer churn vs retained distribution
+- **Bar Chart** — Churn rate by contract type
+- **Business Case** — Why retaining subscribers is 5–25× cheaper than acquiring new ones
+- **Project Workflow** — Step-by-step pipeline walkthrough
 
 ### 📂 2. Dataset Explorer
-* **Table Search Filters:** Type columns (e.g. `gender, Contract, Churn`) to filter down massive datasets interactively.
-* **Interactive Slicer:** Slider to increase/decrease the rows displayed at once (from 10 to 200).
-* **Column Profiler:** Fully inspect any selected column’s stats, unique value count, missing counts, value percentage, and automatic distribution charts.
+- **Column Search Filter** — Type column names to filter the raw data table
+- **Interactive Row Slicer** — Slider to control rows displayed (10–200)
+- **Data Types & Missing Values** — Side-by-side profiling panels
+- **Descriptive Statistics** — Full `df.describe()` with formatted output
+- **Column Profiler** — Inspect any column's value counts, unique values, and auto-distribution chart
 
-### 📈 3. EDA Dashboard
-* **Univariate Tab:** Clean histograms, boxplots, and box-whiskers of numeric parameters coupled with automatic descriptive stat summaries.
-* **Bivariate Tab:** Compare contract length, internet type, and payment methods vs churn rates to identify core customer friction points.
-* **Correlation Thermal Heatmap:** Interactive correlation grid showcasing relationships between numeric variables.
-* **Lightweight Feature Importance:** Employs a quick-scan Random Forest model to rank and display the top indicators driving churn.
+### 📈 3. EDA Dashboard (4 Tabs)
+- **Univariate** — Histograms/bar charts + dynamic insight panel per feature
+- **Bivariate** — Stacked bar + churn rate charts for 8 categorical features vs churn
+- **Correlation Heatmap** — Interactive Pearson correlation matrix for numeric features
+- **Feature Importance** — Quick-scan Random Forest ranking of top N features (adjustable slider)
 
 ### 🤖 4. Model Training
-* **Leakage-Free Preprocessing:** Pipeline applies standard scaling and one-hot encoding on train splits only.
-* **Class Imbalance Resolution:** Integrates **SMOTE (Synthetic Minority Over-sampling Technique)** exclusively inside the training pipeline to balance labels without leaking into test data.
-* **7 Algorithms Ready:** Logistic Regression, Decision Tree, Random Forest, KNN, SVM, Gradient Boosting, and XGBoost.
-* **Automatic Champions Saving:** The model hitting the highest ROC-AUC automatically serializes itself to `models/best_churn_model.pkl`.
+- **7 Algorithms** — Logistic Regression, Decision Tree, Random Forest, KNN, SVM, Gradient Boosting, XGBoost
+- **Leakage-Free Pipeline** — StandardScaler + OneHotEncoder fit on **train data only**
+- **SMOTE Resampling** — Applied inside training loop only (never touches test data)
+- **Confusion Matrix** — Normalized heatmap with percentage annotations
+- **ROC Curve** — Per-model AUC visualization after every training run
+- **Auto Champion Saving** — Best ROC-AUC model serialized to `models/best_churn_model.pkl`
 
 ### 🏆 5. Model Comparison
-* **Metrics Leaderboard:** Interactive dataframe sorting and highlight-marking the peak performance scores.
-* **radar Plot:** Polar multi-axis comparison charts showcasing models across 5 evaluation parameters.
-* **ROC & Precision-Recall Overlays:** Interactive lines detailing true-positive rate gains and precision trade-offs.
-* **Confusion Matrix Grid:** Side-by-side subplot heatmaps displaying raw classifications, false positives, and false negatives.
+- **Metrics Leaderboard** — Sortable, highlight-marked dataframe across Accuracy, Precision, Recall, F1, ROC-AUC
+- **Champion Callout Box** — Automatically identifies and badges the best model
+- **Radar Chart** — Polar multi-axis comparison across all 5 metrics
+- **Combined ROC Curves** — All models on a single overlaid chart
+- **Precision-Recall Curves** — Average Precision overlay for all models
+- **Confusion Matrix Grid** — Side-by-side subplot heatmaps for all trained models
 
 ### 🎯 6. Prediction System
-* **Profile Creation:** Easily dial in customer variables (contract length, payment, demographics, technical add-ons).
-* **Charges Calculation:** Auto-estimates total charges mathematically via `Tenure * Monthly Charges` with a manual override badge.
-* **Visual Churn Gauge:** Radial speedometer plotting prediction confidence in real-time.
-* **Actionable Retention Recommendations:** Suggests personalized tactics (such as upgrading contract lengths, credit-card migration, support scheduling).
+- **Customer Profile Form** — Full input form (demographics, account, phone, internet services)
+- **Auto Total Charges** — Calculated as `Tenure × Monthly Charges`
+- **Churn Risk Result** — Color-coded High Risk / Likely to Stay result card
+- **Probability Gauge** — Radial speedometer showing churn confidence %
+- **Progress Bar** — Linear churn probability indicator
+- **Retention Recommendations** — Actionable tactics personalized to the prediction result
+- **Input Summary** — Expandable table of all features submitted
 
 ---
 
 ## 📂 Project Directory Structure
 
 ```
-c:\Users\CITY COMPUTER HYD\Downloads\Project\
-├── app.py                  # Main Streamlit UI Router & page definitions
-├── utils.py                # Core ML helper classes, load_data, and pipelines
-├── requirements.txt        # Production-pinned package requirements
+customer-churn-prediction-ml-dashboard/
+│
+├── app.py                  # Main Streamlit UI router & all 6 page definitions
+├── utils.py                # ML helpers: data loading, preprocessing, training, prediction
+├── requirements.txt        # Pinned production dependencies
+├── .gitignore              # Excludes __pycache__, .ipynb_checkpoints, etc.
+├── README.md               # This file
+│
 ├── data/
-│   └── WA_Fn-UseC_-Telco-Customer-Churn.csv   # Target IBM dataset CSV
-├── notebooks/
-│   ├── 01_EDA_and_Preprocessing.ipynb  # Sequenced Jupyter Notebook
-│   └── 01_eda_and_preprocessing.py     # Python conversion pipeline
+│   └── WA_Fn-UseC_-Telco-Customer-Churn.csv   # IBM Telco dataset (7,043 rows × 21 cols)
+│
 ├── models/
-│   └── best_churn_model.pkl  # Serialized top model (automatically updated)
-├── visuals/                # Project screenshots, dashboard mockups, and chart graphics
-└── README.md               # Extensive project documentation
+│   └── best_churn_model.pkl    # Auto-saved best model bundle (preprocessor + classifier)
+│
+├── notebooks/
+│   ├── 01_EDA_and_Preprocessing.ipynb  # Full Jupyter Notebook with EDA, tuning & modeling
+│   └── 01_eda_and_preprocessing.py     # Python script version of the notebook
+│
+└── visuals/
+    └── *.png               # Dashboard screenshots and chart exports
 ```
 
 ---
 
-## 🛠️ Local Setup & Deployment
+## 🛠️ Tech Stack
+
+| Layer | Library | Purpose |
+|---|---|---|
+| **UI** | Streamlit 1.x | Multi-page dashboard framework |
+| **Visualization** | Plotly, Plotly Express | Interactive charts & gauges |
+| **Data** | Pandas, NumPy | Data wrangling & numerical ops |
+| **ML** | Scikit-learn | Preprocessing, modeling, metrics |
+| **Boosting** | XGBoost | Gradient boosting classifier |
+| **Resampling** | Imbalanced-learn | SMOTE for class imbalance |
+| **Serialization** | Joblib | Model bundle save/load |
+| **Acceleration** | PyArrow | Fast dataframe serialization |
+
+---
+
+## ⚙️ Local Setup & Deployment
 
 ### Prerequisites
-* Python 3.13 (or 3.10+) installed.
+- Python **3.10+** (tested on 3.13)
+- `pip` or `pip3`
 
-### Installation & Execution
-1. Clone or download this project directory.
-2. Open PowerShell or Command Prompt inside the workspace.
-3. Install pinned dependencies:
-   ```bash
-   & "C:/Users/CITY COMPUTER HYD/AppData/Local/Programs/Python/Python313/python.exe" -m pip install -r requirements.txt
-   ```
-4. Run the Streamlit application:
-   ```bash
-   & "C:/Users/CITY COMPUTER HYD/AppData/Local/Programs/Python/Python313/python.exe" -m streamlit run app.py
-   ```
-5. Navigate to `http://localhost:8501` to use the dashboard!
+### Installation
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/gh-hashir/customer-churn-prediction-ml-dashboard.git
+cd customer-churn-prediction-ml-dashboard
+
+# 2. (Optional) Create a virtual environment
+python -m venv venv
+venv\Scripts\activate        # Windows
+# source venv/bin/activate   # macOS/Linux
+
+# 3. Install dependencies
+pip install -r requirements.txt
+
+# 4. Run the dashboard
+streamlit run app.py
+```
+
+### Access
+Open your browser and navigate to:
+```
+http://localhost:8501
+```
+
+---
+
+## 📊 Dataset
+
+**IBM Telco Customer Churn** — [Kaggle Source](https://www.kaggle.com/datasets/blastchar/telco-customer-churn)
+
+| Attribute | Value |
+|---|---|
+| Rows | 7,043 customers |
+| Features | 21 columns |
+| Target | `Churn` (Yes / No → 1 / 0) |
+| Churn Rate | ~26.5% |
+| Missing Values | 11 (TotalCharges — filled with 0) |
+
+**Feature Categories:**
+- **Demographics** — gender, SeniorCitizen, Partner, Dependents
+- **Account** — tenure, Contract, PaperlessBilling, PaymentMethod, MonthlyCharges, TotalCharges
+- **Phone Services** — PhoneService, MultipleLines
+- **Internet Services** — InternetService, OnlineSecurity, OnlineBackup, DeviceProtection, TechSupport, StreamingTV, StreamingMovies
+
+---
+
+## 🤖 ML Pipeline Design
+
+```
+Raw CSV
+  ↓
+Stratified 80/20 Train-Test Split
+  ↓
+ColumnTransformer (fit on TRAIN only)
+  ├─ StandardScaler → [SeniorCitizen, tenure, MonthlyCharges, TotalCharges]
+  └─ OneHotEncoder  → [gender, Partner, Dependents, ..., PaymentMethod]
+  ↓
+SMOTE (applied to processed TRAIN only)
+  ↓
+Classifier Training
+  ↓
+Evaluation on UNSEEN TEST SET
+  ↓
+Best Model → models/best_churn_model.pkl
+```
+
+**No data leakage** — all transformations are fit exclusively on training data.
+
+---
+
+## 📈 Model Results (Sample)
+
+| Model | Accuracy | Precision | Recall | F1-Score | ROC-AUC |
+|---|---|---|---|---|---|
+| Gradient Boosting | ~0.81 | ~0.67 | ~0.52 | ~0.58 | ~0.85 |
+| Random Forest | ~0.80 | ~0.65 | ~0.51 | ~0.57 | ~0.84 |
+| XGBoost | ~0.80 | ~0.64 | ~0.53 | ~0.58 | ~0.84 |
+| Logistic Regression | ~0.79 | ~0.63 | ~0.56 | ~0.59 | ~0.84 |
+
+> *Results vary slightly per run due to SMOTE randomness.*
+
+---
+
+## 🔗 Links
+
+- **Live App** → [https://customer-churn-prediction-ml-dashboard-1.streamlit.app](https://customer-churn-prediction-ml-dashboard-1.streamlit.app)
+- **GitHub Repo** → [https://github.com/gh-hashir/customer-churn-prediction-ml-dashboard](https://github.com/gh-hashir/customer-churn-prediction-ml-dashboard)
+- **Dataset** → [IBM Telco Customer Churn on Kaggle](https://www.kaggle.com/datasets/blastchar/telco-customer-churn)
+
+---
+
+## 👤 Author
+
+**Hashir Khan**
+- GitHub: [@gh-hashir](https://github.com/gh-hashir)
+
+---
+
+<p align="center">Made with ❤️ using Streamlit · IBM Telco Customer Churn Dataset</p>
